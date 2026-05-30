@@ -398,3 +398,32 @@ enterBtn.addEventListener("click", () => {
     startLoaderTimer();
   }, 1000);
 });
+
+for (let i = 0; i < 30; i++) {
+  const heart = document.createElement("div");
+
+  heart.innerHTML = "💖";
+
+  heart.style.position = "fixed";
+  heart.style.left = "50%";
+  heart.style.top = "50%";
+  heart.style.fontSize = "30px";
+  heart.style.zIndex = "999999";
+
+  document.body.appendChild(heart);
+
+  const x = (Math.random() - 0.5) * 800;
+  const y = (Math.random() - 0.5) * 800;
+
+  heart.animate(
+    [
+      { transform: "translate(0,0)", opacity: 1 },
+      { transform: `translate(${x}px,${y}px)`, opacity: 0 },
+    ],
+    {
+      duration: 2000,
+    },
+  );
+
+  setTimeout(() => heart.remove(), 2000);
+}
