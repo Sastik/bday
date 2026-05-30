@@ -29,6 +29,35 @@ let textIndex = 0;
 let charIndex = 0;
 partyBtn.classList.remove("show");
 
+
+
+const collector = document.getElementById("memoryCollector");
+
+function collectPhoto() {
+
+  const img = document.createElement("img");
+
+  const randomPhoto =
+    Math.floor(Math.random() * 16) + 1;
+
+  img.src = `assets/images/photo${randomPhoto}.jpeg`;
+
+  img.classList.add("memory-photo");
+
+  img.style.setProperty(
+    "--startX",
+    `${Math.random() * 400 - 200}px`
+  );
+
+  collector.appendChild(img);
+
+  setTimeout(() => {
+    img.remove();
+  }, 2000);
+}
+
+setInterval(collectPhoto, 200);
+
 function typeEffect() {
   if (charIndex < texts[textIndex].length) {
     typewriter.innerHTML += texts[textIndex].charAt(charIndex);
