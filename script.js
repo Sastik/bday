@@ -57,12 +57,27 @@ setTimeout(() => {
   });
 }, 300);
 
+// After loader completes
 function startLoaderTimer() {
   setTimeout(() => {
     loader.style.opacity = "0";
 
     loaderMusic.pause();
     loaderMusic.currentTime = 0;
+
+    // Play song4.mp3
+    const introSong = new Audio("assets/music/song4.mp3");
+    introSong.play();
+
+    // After song4 ends, play song3 automatically
+    introSong.addEventListener("ended", () => {
+      const autoSong = new Audio("assets/music/song3.mp3");
+      autoSong.loop = true; // optional
+      autoSong.play();
+
+      // Store globally if needed
+      window.autoSong = autoSong;
+    });
 
     setTimeout(() => {
       loader.style.display = "none";
@@ -427,3 +442,18 @@ for (let i = 0; i < 30; i++) {
 
   setTimeout(() => heart.remove(), 2000);
 }
+
+startBtn.addEventListener("click", () => {
+  if (window.autoSong) {
+    window.autoSong.pause();
+    window.autoSong.currentTime = 0;
+  }
+
+  bgMusic.currentTime = 0;
+  bgMusic.play();
+
+  confetti({
+    particleCount: 200,
+    spread: 120,
+  });
+});

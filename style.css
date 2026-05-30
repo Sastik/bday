@@ -132,7 +132,7 @@ section {
   animation: wiggle 2s infinite;
 }
 
-.gift-glow {
+/* .gift-glow {
   position: absolute;
   inset: -20px;
   border-radius: 30px;
@@ -143,7 +143,7 @@ section {
       transparent 70%);
 
   animation: pulse 2s infinite;
-}
+} */
 
 .gift-box.open .lid {
   transform:
@@ -276,10 +276,6 @@ section {
     top: -50px;
   }
 
-  .gift-glow {
-    width: 240px;
-    height: 240px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -295,7 +291,7 @@ section {
   .gift-box {
     width: 160px;
     height: 160px;
-    margin-bottom: 200px;
+    margin-bottom: 130px;
   }
 
   .lid {
