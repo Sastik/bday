@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ananya Birthday ❤️</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+  <!-- LOADER -->
+
+  <div id="welcomeScreen">
+
+    <div class="gift-box" id="enterBtn">
+
+      <div class="lid"></div>
+
+      <div class="ribbon-v"></div>
+      <div class="ribbon-h"></div>
+
+      <div class="bow">
+        🎀
+      </div>
+
+      <div class="gift-text">
+        Open Your Birthday Surprise ❤️
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="loader">
+
+    <div class="flying-photos" id="flyingPhotos"></div>
+
+    <div class="loader-card glass">
+
+      <div id="sparkleContainer"></div>
+
+      <div class="love-meter">
+        <span id="lovePercent">0%</span>
+      </div>
+
+      <h1 id="loaderTitle">Preparing Something Magical ✨</h1>
+
+      <div class="ring-wrapper">
+        <div class="ring"></div>
+        <div class="heart-loader">💖</div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress"></div>
+      </div>
+
+      <div class="scan-box">
+        <div class="scan-line"></div>
+      </div>
+
+      <p id="typewriter"></p>
+
+    </div>
+
+  </div>
+
+  <!-- PARTY BUTTON -->
+
+  <div id="partyVideoPopup">
+
+    <button id="closeVideo">✖</button>
+
+    <video id="partyVideo" controls>
+      <source src="assets/images/party.mp4" type="video/mp4">
+    </video>
+
+  </div>
+
+  <button id="partyBtn">🎉 PARTY MODE</button>
+
+  <!-- MUSIC -->
+
+  <audio id="loaderMusic" autoplay>
+    <source src="assets/music/song1.mp3" type="audio/mp3">
+  </audio>
+
+
+  <!-- HERO -->
+
+  <section class="hero section-bg bg1 snap">
+
+    <div class="overlay glass"></div>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon b1"></div>
+      <div class="balloon b2"></div>
+      <div class="balloon b3"></div>
+      <div class="balloon b4"></div>
+      <div class="balloon b5"></div>
+      <div class="balloon b6"></div>
+    </div>
+
+    <!-- Fireworks -->
+    <div class="fireworks">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts"></div>
+
+    <div class="hero-content">
+
+      <h1 class="main-title">
+        Happy Birthday
+        <span>Ananya ❤️</span>
+      </h1>
+
+      <p class="subtitle">
+        Wishing you endless happiness, success, laughter and love on your special day ✨❤️
+      </p>
+      <div class="cake-sec">
+        <img src="assets/images/cake.png" class="cake" />
+
+        <button id="startBtn">Tap To Begin Love Journey ✨</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MEMORY WALL -->
+
+  <section class="memory-wall section-bg bg2 snap">
+
+    <div class="overlay glass"></div>
+
+    <h2>Our Memory Universe 📸</h2>
+
+    <div class="photo-grid">
+
+      <div class="photo-card rotate-left">
+        <img src="assets/images/photo1.jpeg">
+        <span>Cutest smile ever ❤️</span>
+      </div>
+
+      <div class="photo-card rotate-right">
+        <img src="assets/images/photo2.jpeg">
+        <span>Still my favorite notification 💕</span>
+      </div>
+
+      <div class="photo-card rotate-left">
+        <img src="assets/images/photo3.jpeg">
+        <span>Beauty level overflow ✨</span>
+      </div>
+
+      <div class="photo-card rotate-right">
+        <img src="assets/images/photo4.jpeg">
+        <span>My safe place 🌸</span>
+      </div>
+
+      <div class="photo-card rotate-left">
+        <img src="assets/images/photo5.jpeg">
+        <span>Forever favorite human 💖</span>
+      </div>
+
+      <div class="photo-card rotate-right">
+        <img src="assets/images/photo6.jpeg">
+        <span>Our best era ❤️</span>
+      </div>
+
+      <div class="photo-card rotate-left">
+        <img src="assets/images/photo7.jpeg">
+        <span>Warning: Excessive cuteness detected 🚨😍</span>
+      </div>
+
+      <div class="photo-card rotate-right">
+        <img src="assets/images/photo8.jpeg">
+        <span>A masterpiece even AI can't recreate ✨💖</span>
+      </div>
+      <div class="photo-card rotate-left">
+        <img src="assets/images/photo9.jpeg">
+        <span>If beauty had a face, it would look like this ❤️</span>
+      </div>
+
+      <div class="photo-card rotate-right">
+        <img src="assets/images/photo10.jpeg">
+        <span>03.06.2006 — The world got a little brighter 🌍✨</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- QUIZ -->
+
+  <section class="quiz section-bg bg3 snap">
+
+    <div class="overlay glass"></div>
+
+    <div class="quiz-box glass">
+
+      <h2>Love Quiz 😂</h2>
+
+      <p>Who loves more?</p>
+
+      <div class="quiz-buttons">
+        <button class="wrong">You 😏</button>
+        <button class="correct">Me Obviously ❤️</button>
+      </div>
+
+      <div id="quizResult"></div>
+
+    </div>
+
+  </section>
+
+  <!-- LETTERS -->
+
+  <section class="letters section-bg bg4 snap">
+
+    <div class="overlay glass"></div>
+
+    <h2>Open When 💌</h2>
+
+    <div class="letters-container">
+
+      <div class="letter glass">
+        <h3>Open When Sad</h3>
+        <p>You are stronger than you think ❤️</p>
+      </div>
+
+      <div class="letter glass">
+        <h3>Open When Angry</h3>
+        <p>Please calm down before attacking me 😂</p>
+      </div>
+
+      <div class="letter glass">
+        <h3>Open When Missing Me</h3>
+        <p>I'm always with you 💕</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+
+  <section class="dashboard section-bg bg5 snap">
+
+    <div class="overlay glass"></div>
+
+    <h2>Relationship Dashboard 💻</h2>
+
+    <div class="stats-grid">
+
+      <div class="stat glass">
+        <h3>Cute Level</h3>
+        <div class="meter">
+          <div class="fill"></div>
+        </div>
+        <span>999%</span>
+      </div>
+
+      <div class="stat glass">
+        <h3>Drama Storage</h3>
+        <div class="meter">
+          <div class="fill"></div>
+        </div>
+        <span>Unlimited 😂</span>
+      </div>
+
+      <div class="stat glass">
+        <h3>Hug Requirement</h3>
+        <div class="meter">
+          <div class="fill"></div>
+        </div>
+        <span>Infinite ❤️</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FUTURE -->
+
+  <section class="future section-bg bg6 snap">
+
+    <div class="overlay glass"></div>
+
+    <div class="future-card glass">
+
+      <h2>Message From 2030 ✨</h2>
+
+      <p>
+        Hi love... ❤️<br><br>
+        It's 2030.<br>
+        We still laugh at the same stupid jokes together.<br><br>
+        And honestly?
+        You're still the prettiest girl in my universe 💕
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- FINAL -->
+
+  <section class="final section-bg bg7 snap">
+
+    <div class="overlay glass"></div>
+
+    <h2>Press & Hold ❤️</h2>
+
+    <div id="heartBtn">💖</div>
+
+    <div id="finalMessage" class="glass">
+      <h1>
+        Thank You For Existing Since 03.06.2006 ❤️
+      </h1>
+
+      <p>
+        You made my life softer, happier, prettier and full of love ✨
+      </p>
+    </div>
+
+  </section>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
