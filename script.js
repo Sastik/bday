@@ -153,7 +153,7 @@ wrong.addEventListener("click", () => {
 });
 
 correct.addEventListener("click", () => {
-  result.innerHTML = "✅ Correct Answer ❤️";
+  result.innerHTML = "Correct! Today belongs to the queen herself 👑❤️";
 
   confetti({
     particleCount: 300,
