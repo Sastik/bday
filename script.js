@@ -29,25 +29,18 @@ let textIndex = 0;
 let charIndex = 0;
 partyBtn.classList.remove("show");
 
-
-
 const collector = document.getElementById("memoryCollector");
 
 function collectPhoto() {
-
   const img = document.createElement("img");
 
-  const randomPhoto =
-    Math.floor(Math.random() * 16) + 1;
+  const randomPhoto = Math.floor(Math.random() * 16) + 1;
 
   img.src = `assets/images/photo${randomPhoto}.jpeg`;
 
   img.classList.add("memory-photo");
 
-  img.style.setProperty(
-    "--startX",
-    `${Math.random() * 400 - 200}px`
-  );
+  img.style.setProperty("--startX", `${Math.random() * 400 - 200}px`);
 
   collector.appendChild(img);
 
@@ -115,18 +108,23 @@ function startLoaderTimer() {
   }, 9000);
 }
 
-const flyingPhotos = document.getElementById("flyingPhotos");
+const bubbles = document.querySelector(".loader-bubbles");
 
-for (let i = 1; i <= 16; i++) {
-  const img = document.createElement("img");
+for (let i = 0; i < 30; i++) {
+  const bubble = document.createElement("span");
 
-  img.src = `assets/images/photo${i}.jpeg`;
+  const size = 20 + Math.random() * 80;
 
-  img.style.left = Math.random() * 100 + "%";
-  img.style.animationDuration = 6 + Math.random() * 5 + "s";
-  img.style.animationDelay = Math.random() * 3 + "s";
+  bubble.style.width = size + "px";
+  bubble.style.height = size + "px";
 
-  flyingPhotos.appendChild(img);
+  bubble.style.left = Math.random() * 100 + "%";
+
+  bubble.style.animationDuration = 8 + Math.random() * 10 + "s";
+
+  bubble.style.animationDelay = Math.random() * 5 + "s";
+
+  bubbles.appendChild(bubble);
 }
 
 // START BUTTON
@@ -261,7 +259,6 @@ function createPopup(message) {
 // PARTY MODE
 
 partyBtn.addEventListener("click", () => {
-
   // Stop song2
   bgMusic.pause();
 
@@ -286,11 +283,9 @@ partyBtn.addEventListener("click", () => {
   setTimeout(() => {
     clearInterval(interval);
   }, 9000);
-
 });
 
 function closePartyMode() {
-
   partyVideo.pause();
 
   partyPopup.classList.remove("show");
@@ -300,7 +295,6 @@ function closePartyMode() {
   // Resume song2
   bgMusic.play();
 }
-
 
 partyVideo.addEventListener("ended", () => {
   closePartyMode();
@@ -537,7 +531,6 @@ function startLoaderTimer() {
 }
 
 startBtn.addEventListener("click", () => {
-
   // Stop song3
   if (window.autoSong) {
     window.autoSong.pause();
@@ -563,59 +556,39 @@ startBtn.addEventListener("click", () => {
   setTimeout(startAutoJourney, 1000);
 });
 
-
-const timings = [
-  8000,
-  5000,
-  6000, 
-  5000, 
-  7000, 
-  8000 
-];
+const timings = [8000, 5000, 6000, 5000, 7000, 8000];
 
 function startAutoJourney() {
-
   const sections = [
     ".memory-wall",
     ".quiz",
     ".letters",
     ".dashboard",
     ".future",
-    ".final"
+    ".final",
   ];
 
-  const timings = [
-    8000,
-    5000,
-    6000,
-    5000,
-    7000,
-    8000
-  ];
+  const timings = [8000, 5000, 6000, 5000, 7000, 8000];
 
   let i = 0;
 
   function move() {
-
     if (i >= sections.length) {
-
       // Final journey completed
       setTimeout(() => {
-
         partyBtn.classList.add("show");
 
         confetti({
           particleCount: 300,
-          spread: 180
+          spread: 180,
         });
-
       }, 2000);
 
       return;
     }
 
     document.querySelector(sections[i]).scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
 
     const delay = timings[i];

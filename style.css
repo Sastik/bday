@@ -400,11 +400,37 @@ span {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: linear-gradient(135deg, #fff0f7, #ffd9e8);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   overflow: hidden;
+
+  background:
+    radial-gradient(circle at top,
+      #ffe7f3 0%,
+      #ffd6ec 25%,
+      #d9f4ff 60%,
+      #c9ecff 100%);
+}
+
+.loader-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.loader-bubbles span {
+  position: absolute;
+  bottom: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .35);
+  backdrop-filter: blur(5px);
+
+  animation: bubbleFloat linear infinite;
 }
 
 .loader-card {
@@ -434,8 +460,76 @@ span {
   border: 8px solid #ff4f8b;
   border-radius: 50%;
   overflow: hidden;
-  background: rgba(255,255,255,0.3);
+
+  background: rgba(255, 255, 255, 0.3);
 }
+
+.ring-wrapper::before {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(transparent,
+      rgba(255, 255, 255, .8),
+      transparent);
+
+  animation:
+    rotateLight 5s linear infinite;
+
+  filter: blur(20px);
+}
+
+@keyframes rotateLight {
+  from {
+    transform:
+      translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+#loader::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    url("https://www.transparenttextures.com/patterns/stardust.png");
+
+  opacity: .3;
+
+  animation:
+    starsMove 20s linear infinite;
+}
+
+@keyframes starsMove {
+
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-500px);
+  }
+}
+
+
 
 .liquid {
   position: absolute;
@@ -445,12 +539,10 @@ span {
   width: 100%;
   height: 0%;
 
- background: linear-gradient(
-  to top,
- rgba(0,150,199,.95),
-    rgba(72,202,228,.85),
-    rgba(202,240,248,.75)
-);
+  background: linear-gradient(to top,
+      rgba(0, 150, 199, .95),
+      rgba(72, 202, 228, .85),
+      rgba(202, 240, 248, .75));
 
   animation: fillLove 9s linear forwards;
 }
@@ -475,7 +567,7 @@ span {
   width: 200%;
   height: 25px;
 
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
 
   border-radius: 50%;
 
@@ -519,21 +611,17 @@ span {
 
   0% {
     transform:
-      translate(var(--startX), -300px)
-      scale(1);
+      translate(var(--startX), -300px) scale(1);
   }
 
   50% {
     transform:
-      translate(0px, 0px)
-      rotate(360deg)
-      scale(1);
+      translate(0px, 0px) rotate(360deg) scale(1);
   }
 
   100% {
     transform:
-      translate(45px, 45px)
-      scale(0);
+      translate(45px, 45px) scale(0);
     opacity: 0;
   }
 }
@@ -752,14 +840,15 @@ button:hover {
 #partyBtn {
   position: fixed;
   right: 20px;
-  top: -100px; /* hidden above screen */
+  top: -100px;
+  /* hidden above screen */
 
   z-index: 999;
 
   opacity: 0;
 
   transition:
-    top 1.2s cubic-bezier(.22,1,.36,1),
+    top 1.2s cubic-bezier(.22, 1, .36, 1),
     opacity 1.2s ease;
 
   pointer-events: none;
