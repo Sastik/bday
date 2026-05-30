@@ -28,6 +28,28 @@ section {
   overflow: hidden;
 }
 
+.memory-wall,
+.quiz,
+.letters,
+.dashboard,
+.future,
+.final {
+  display: none;
+}
+
+#startBtn {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: 0.8s;
+}
+
+#startBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 #welcomeScreen {
   position: fixed;
   inset: 0;
@@ -628,8 +650,47 @@ button:hover {
 #partyBtn {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  top: -100px; /* hidden above screen */
+
   z-index: 999;
+
+  opacity: 0;
+
+  transition:
+    top 1.2s cubic-bezier(.22,1,.36,1),
+    opacity 1.2s ease;
+
+  pointer-events: none;
+}
+
+#partyBtn.show {
+  top: 20px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes partyEntrance {
+  0% {
+    transform: translateY(-80px) scale(.5);
+    opacity: 0;
+  }
+
+  70% {
+    transform: translateY(10px) scale(1.1);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+#partyBtn.show {
+  top: 20px;
+  opacity: 1;
+  pointer-events: auto;
+
+  animation: partyEntrance 1.2s ease forwards;
 }
 
 /* ==========================

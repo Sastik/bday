@@ -27,6 +27,7 @@ const texts = [
 
 let textIndex = 0;
 let charIndex = 0;
+partyBtn.classList.remove("show");
 
 function typeEffect() {
   if (charIndex < texts[textIndex].length) {
@@ -231,12 +232,15 @@ function createPopup(message) {
 // PARTY MODE
 
 partyBtn.addEventListener("click", () => {
+
+  // Stop song2
+  bgMusic.pause();
+
   document.body.classList.toggle("party-mode");
 
   partyPopup.classList.add("show");
 
   partyVideo.currentTime = 0;
-
   partyVideo.play();
 
   const interval = setInterval(() => {
@@ -253,16 +257,28 @@ partyBtn.addEventListener("click", () => {
   setTimeout(() => {
     clearInterval(interval);
   }, 9000);
+
 });
 
-partyVideo.addEventListener("ended", () => {
-  partyPopup.classList.remove("show");
-});
+function closePartyMode() {
 
-closeVideo.addEventListener("click", () => {
   partyVideo.pause();
 
   partyPopup.classList.remove("show");
+
+  document.body.classList.remove("party-mode");
+
+  // Resume song2
+  bgMusic.play();
+}
+
+
+partyVideo.addEventListener("ended", () => {
+  closePartyMode();
+});
+
+closeVideo.addEventListener("click", () => {
+  closePartyMode();
 });
 
 // CURSOR HEARTS
@@ -457,3 +473,127 @@ startBtn.addEventListener("click", () => {
     spread: 120,
   });
 });
+
+const hiddenSections = document.querySelectorAll(
+  ".memory-wall, .quiz, .letters, .dashboard, .future, .final",
+);
+
+function startLoaderTimer() {
+  setTimeout(() => {
+    loader.style.opacity = "0";
+
+    loaderMusic.pause();
+    loaderMusic.currentTime = 0;
+
+    const introSong = new Audio("assets/music/song4.mp3");
+    introSong.play();
+
+    introSong.addEventListener("ended", () => {
+      const autoSong = new Audio("assets/music/song3.mp3");
+      autoSong.loop = true;
+      autoSong.play();
+
+      window.autoSong = autoSong;
+    });
+
+    setTimeout(() => {
+      loader.style.display = "none";
+
+      // Show button after 10 seconds on hero screen
+      setTimeout(() => {
+        startBtn.classList.add("show");
+      }, 15000);
+    }, 1000);
+  }, 9000);
+}
+
+startBtn.addEventListener("click", () => {
+
+  // Stop song3
+  if (window.autoSong) {
+    window.autoSong.pause();
+    window.autoSong.currentTime = 0;
+  }
+
+  // Play song2 forever
+  bgMusic.loop = true;
+  bgMusic.currentTime = 0;
+  bgMusic.play();
+
+  // Show all sections
+  hiddenSections.forEach((section) => {
+    section.style.display = "flex";
+  });
+
+  confetti({
+    particleCount: 300,
+    spread: 180,
+  });
+
+  // Start auto journey after a short delay
+  setTimeout(startAutoJourney, 1000);
+});
+
+
+const timings = [
+  8000,
+  5000,
+  6000, 
+  5000, 
+  7000, 
+  8000 
+];
+
+function startAutoJourney() {
+
+  const sections = [
+    ".memory-wall",
+    ".quiz",
+    ".letters",
+    ".dashboard",
+    ".future",
+    ".final"
+  ];
+
+  const timings = [
+    8000,
+    5000,
+    6000,
+    5000,
+    7000,
+    8000
+  ];
+
+  let i = 0;
+
+  function move() {
+
+    if (i >= sections.length) {
+
+      // Final journey completed
+      setTimeout(() => {
+
+        partyBtn.classList.add("show");
+
+        confetti({
+          particleCount: 300,
+          spread: 180
+        });
+
+      }, 2000);
+
+      return;
+    }
+
+    document.querySelector(sections[i]).scrollIntoView({
+      behavior: "smooth"
+    });
+
+    const delay = timings[i];
+    i++;
+
+    setTimeout(move, delay);
+  }
+
+  move();
+}
