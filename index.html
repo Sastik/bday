@@ -247,89 +247,168 @@
 
     <div class="quiz-box glass">
 
-      <h2>Birthday Quiz 😂</h2>
+      <h2>🎮 Birthday Challenge For Ananya 🎮</h2>
 
-      <p>Who's the birthday star today?</p>
+      <p id="quizQuestion">
+        What is Ananya's Cuteness Level? 🤔
+      </p>
 
-      <div class="quiz-buttons">
-        <button class="wrong">Someone Else 😅</button>
-        <button class="correct">Ananya Obviously 👑✨</button>
+      <div class="quiz-buttons" id="quizButtons">
+
+        <button class="wrong">50%</button>
+        <button class="wrong">100%</button>
+        <button class="correct">9999% 👑</button>
+
       </div>
 
       <div id="quizResult"></div>
 
+      <div id="quizScore" style="margin-top:15px;">
+        Score: 0 / 3
+      </div>
+
     </div>
 
   </section>
-
-  <!-- LETTERS -->
 
   <section class="letters section-bg bg4 snap">
 
     <div class="overlay glass"></div>
 
-    <h2>Open When 💌</h2>
+    <h2>📮 Secret Emergency Letters For Ananya 📮</h2>
+
+    <p class="letter-subtitle">
+      These letters are protected by Birthday Magic ✨<br>
+      Open only during emergencies 🚨💖
+    </p>
 
     <div class="letters-container">
 
-      <div class="letter glass">
-        <h3>Open When Sad</h3>
-        <p>Remember how many people care about you.
-          Better days are already on their way ❤️</p>
+      <div class="magic-envelope" onclick="openLetter(this)">
+        <div class="envelope-front">😢</div>
+
+        <div class="letter-content">
+          <h3>Open When Sad</h3>
+
+          <p>
+            Attention Ananya! 🚨<br><br>
+
+            Our investigation confirms that you are too important to stay sad.
+
+            Side effects of reading this letter:
+            <br>✨ +100 Happiness
+            <br>✨ +50 Confidence
+            <br>✨ +999 Cute Points
+
+            <br><br>
+            Better days are already loading...
+            ██████████ 100% ❤️
+          </p>
+        </div>
       </div>
 
-      <div class="letter glass">
-        <h3>Open When Angry</h3>
-        <p>Take a small break, drink some water and trust yourself.
-          You've handled difficult things before ✨</p>
+      <div class="magic-envelope" onclick="openLetter(this)">
+        <div class="envelope-front">😡</div>
+
+        <div class="letter-content">
+          <h3>Open When Angry</h3>
+
+          <p>
+            WARNING ⚠️
+
+            Anger detected in Queen Ananya.
+
+            Recommended fixes:
+
+            <br>🍫 Eat something tasty
+            <br>🎵 Listen to music
+            <br>💃 Pretend you're in a movie scene
+
+            <br><br>
+            Remember:
+            You look far too fabulous to waste energy being angry. 👑✨
+          </p>
+        </div>
       </div>
 
-      <div class="letter glass">
-        <h3>Open When You Need A Smile</h3>
-        <p>
-          Somewhere right now, someone is smiling because you exist 💖
-        </p>
+      <div class="magic-envelope" onclick="openLetter(this)">
+        <div class="envelope-front">😂</div>
+
+        <div class="letter-content">
+          <h3>Open When You Need A Smile</h3>
+
+          <p>
+            Breaking News 📰
+
+            Scientists have discovered that:
+
+            <br><br>
+
+            "Ananya's smile has a 99.99% chance of improving any day."
+
+            <br><br>
+
+            Please smile now for system verification 😎💖
+
+            <br><br>
+
+            Verification Complete ✅
+            World's brightness increased by 25%.
+          </p>
+        </div>
       </div>
 
     </div>
 
   </section>
-
-  <!-- DASHBOARD -->
+  <!-- ANANYA AI CONTROL ROOM -->
 
   <section class="dashboard section-bg bg5 snap">
 
     <div class="overlay glass"></div>
 
-    <h2>Ananya Analytics 📊✨</h2>
+    <h2>🤖 Ananya AI Control Center</h2>
+    <p class="sub-text">Scanning Birthday Queen Status...</p>
 
     <div class="stats-grid">
 
       <div class="stat glass">
-        <h3>Cute Level</h3>
+        <h3>😍 Beauty Detector</h3>
         <div class="meter">
-          <div class="fill"></div>
+          <div class="fill beauty"></div>
         </div>
-        <span>999%</span>
+        <span id="beautyText">Loading...</span>
       </div>
 
       <div class="stat glass">
-        <h3>Drama Storage</h3>
+        <h3>😂 Drama Storage</h3>
         <div class="meter">
-          <div class="fill"></div>
+          <div class="fill drama"></div>
         </div>
-        <span>Unlimited 😂</span>
+        <span>9999 TB Used</span>
       </div>
 
       <div class="stat glass">
-        <h3>Smile Power</h3>
+        <h3>❤️ Smile Generator</h3>
         <div class="meter">
-          <div class="fill"></div>
+          <div class="fill smile"></div>
         </div>
-        <span>Infinite ❤️</span>
+        <span>Infinite Energy</span>
       </div>
+
 
     </div>
+
+    <div class="ai-result glass">
+      <h3>🔍 AI Birthday Scan Result</h3>
+      <p id="scanText">
+        Analyzing...
+      </p>
+    </div>
+
+    <button class="scan-btn" onclick="runScan()">
+      🚀 Run Scan Again
+    </button>
 
   </section>
 
@@ -363,35 +442,80 @@
 
   </section>
 
-  <!-- FINAL -->
-
   <section class="final section-bg bg7 snap">
 
-    <div class="overlay glass"></div>
+    <div class="final-stars"></div>
 
-    <h2>Press & Hold ❤️</h2>
+    <div class="final-overlay"></div>
 
-    <div id="heartBtn">💖</div>
+    <h2 class="final-title">
+      🔒 Final Secret
+    </h2>
 
-    <div id="finalMessage" class="glass">
-      <h1>
-        Happy Birthday Ananya ❤️
-      </h1>
+    <p class="hold-text">
+      Press & Hold The Heart To Unlock ❤️
+    </p>
+
+    <div class="heart-wrapper">
+
+      <svg class="progress-ring" width="260" height="260">
+        <circle class="ring-bg" cx="130" cy="130" r="115" />
+        <circle id="progressCircle" class="ring-progress" cx="130" cy="130" r="115" />
+      </svg>
+
+      <div id="heartBtn">
+        💖
+      </div>
+
+    </div>
+
+    <div id="unlockText">
+      Ready...
+    </div>
+
+    <div id="finalReveal">
+
+      <h1>Happy Birthday Ananya ❤️</h1>
 
       <p>
-        Thank you for being the wonderful person you are.
+        Some people enter our lives and become memories.
 
-        May this year bring you happiness,
-        success,
-        good health,
-        beautiful memories,
-        and countless reasons to smile.
+        Some become reasons to smile.
 
-        Keep shining, because the world genuinely becomes brighter when you do ✨❤️
+        But a very few become a feeling that stays forever.
+
+        Today is not just your birthday.
+
+        It is a celebration of your smile,
+        your kindness,
+        your craziness,
+        your dreams,
+        and everything that makes you special.
+
+        Keep shining.
+
+        The world genuinely looks prettier with you in it. ✨❤️
       </p>
+
+      <div class="cinema-buttons">
+
+        <button onclick="showMemoryRain()">
+          📸 Replay Memories
+        </button>
+
+        <button onclick="showLoveExplosion()">
+          💖 One More Surprise
+        </button>
+
+      </div>
+
     </div>
 
   </section>
+
+  <audio id="loveSong">
+    <source src="assets/music/song5.mp3">
+  </audio>
 
   <script src="script.js"></script>
 

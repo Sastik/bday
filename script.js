@@ -140,27 +140,6 @@ startBtn.addEventListener("click", () => {
   });
 });
 
-// QUIZ
-
-const wrong = document.querySelector(".wrong");
-const correct = document.querySelector(".correct");
-const result = document.getElementById("quizResult");
-
-wrong.addEventListener("click", () => {
-  result.innerHTML = "❌ System Error: Incorrect answer detected 😂";
-
-  createPopup("Too much attitude detected 😂");
-});
-
-correct.addEventListener("click", () => {
-  result.innerHTML = "Correct! Today belongs to the queen herself 👑❤️";
-
-  confetti({
-    particleCount: 300,
-    spread: 180,
-  });
-});
-
 // FINAL HEART
 
 const heartBtn = document.getElementById("heartBtn");
@@ -559,11 +538,289 @@ startBtn.addEventListener("click", () => {
   }, 1000);
 
   setTimeout(() => {
-        partyBtn.classList.add("show");
+    partyBtn.classList.add("show");
 
-        confetti({
-          particleCount: 300,
-          spread: 180,
-        });
-      }, 2000);
+    confetti({
+      particleCount: 300,
+      spread: 180,
+    });
+  }, 2000);
 });
+
+const questions = [
+  {
+    q: "What is Ananya's Cuteness Level? 🤔",
+    options: ["50%", "100%", "9999% 👑"],
+    answer: 2,
+  },
+  {
+    q: "Who owns today's crown? 👑",
+    options: ["Someone Else", "Ananya ❤️", "Nobody"],
+    answer: 1,
+  },
+  {
+    q: "What should Ananya receive today? 🎂",
+    options: ["Homework 😭", "Unlimited Happiness ✨", "More Exams 😭"],
+    answer: 1,
+  },
+];
+
+let current = 0;
+let score = 0;
+
+const question = document.getElementById("quizQuestion");
+const buttons = document.getElementById("quizButtons");
+const result = document.getElementById("quizResult");
+const scoreBox = document.getElementById("quizScore");
+
+function loadQuestion() {
+  const q = questions[current];
+
+  question.innerHTML = q.q;
+
+  buttons.innerHTML = "";
+
+  q.options.forEach((option, index) => {
+    const btn = document.createElement("button");
+
+    btn.innerHTML = option;
+
+    btn.onclick = () => checkAnswer(index);
+
+    buttons.appendChild(btn);
+  });
+}
+
+function checkAnswer(index) {
+  if (index === questions[current].answer) {
+    score++;
+
+    result.innerHTML = `<div class="correct-answer">
+        🎉 Correct! Queen Ananya approves.
+      </div>`;
+  } else {
+    result.innerHTML = `<div class="wrong-answer">
+        😂 Nice try... but that's impossible.
+      </div>`;
+  }
+
+  scoreBox.innerHTML = `Score: ${score} / 3`;
+
+  setTimeout(() => {
+    current++;
+
+    if (current < questions.length) {
+      result.innerHTML = "";
+      loadQuestion();
+    } else {
+      question.innerHTML = "🏆 Congratulations!";
+
+      buttons.innerHTML = "";
+
+      result.innerHTML = `
+      <div class="correct-answer">
+        You successfully completed
+        Ananya's Birthday Challenge 🎂❤️
+        <br><br>
+        Final Score: ${score}/3
+      </div>
+      `;
+      alert("🎁 Secret Reward Unlocked! You officially know Queen Ananya.");
+      confetti({
+        particleCount: 250,
+        spread: 120,
+        origin: { y: 0.6 },
+      });
+    }
+  }, 1200);
+}
+
+loadQuestion();
+
+function openLetter(card) {
+  if (card.classList.contains("open")) return;
+
+  card.classList.add("open");
+
+  confetti({
+    particleCount: 120,
+    spread: 90,
+    origin: { y: 0.7 },
+  });
+
+  const popup = document.createElement("div");
+
+  popup.className = "popup";
+
+  popup.innerHTML = "💌 Secret Letter Opened Successfully ✨";
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 2500);
+}
+
+const res = [
+  "⚠️ Alert: Beauty level exceeded server capacity.",
+  "😍 Face detected. Confidence: 1000%. Scientists confused.",
+  "🚀 Smile power strong enough to light up Kolkata.",
+  "❤️ Birthday Queen status verified successfully.",
+  "😂 Drama storage full. Additional cloud storage required.",
+  "🌸 Cuteness overload detected. Emergency chocolates needed.",
+  "👑 Official Result: World's Most Adorable Human.",
+];
+
+function runScan() {
+  const text = document.getElementById("scanText");
+  const beauty = document.getElementById("beautyText");
+
+  text.innerHTML = "🔄 Scanning...";
+  beauty.innerHTML = "Calculating...";
+
+  setTimeout(() => {
+    text.innerHTML = res[Math.floor(Math.random() * res.length)];
+
+    beauty.innerHTML = 999 + Math.floor(Math.random() * 999) + "%";
+  }, 1500);
+}
+
+runScan();
+
+const heart = document.getElementById("heartBtn");
+const reveal = document.getElementById("finalReveal");
+const text = document.getElementById("unlockText");
+const song = document.getElementById("loveSong");
+const circle = document.getElementById("progressCircle");
+
+const radius = 115;
+const circumference = 2 * Math.PI * radius;
+
+circle.style.strokeDasharray = circumference;
+circle.style.strokeDashoffset = circumference;
+
+let holdInterval;
+let progress = 0;
+
+const cinematicTexts = [
+  "🔍 Searching for the most beautiful soul...",
+  "📸 Loading precious memories...",
+  "❤️ Establishing heart connection...",
+  "✨ Loading happiness database...",
+  "👑 Birthday Queen Verified...",
+];
+
+function startUnlock() {
+  bgMusic.pause();
+  if (window.autoSong) {
+    window.autoSong.pause();
+  }
+  song.currentTime = 0;
+  song.play();
+
+  setTimeout(() => {
+    song.pause();
+
+    bgMusic.currentTime = 0;
+    bgMusic.play();
+  }, 20000);
+
+  let msgIndex = 0;
+
+  holdInterval = setInterval(() => {
+    progress += 2;
+
+    const offset = circumference - (progress / 100) * circumference;
+
+    circle.style.strokeDashoffset = offset;
+
+    if (progress % 20 === 0) {
+      text.innerHTML = cinematicTexts[msgIndex] || "❤️ Unlocking...";
+      msgIndex++;
+    }
+
+    if (progress >= 100) {
+      clearInterval(holdInterval);
+
+      text.innerHTML = "💖 Ananya Unlocked Successfully";
+
+      confetti({
+        particleCount: 1000,
+        spread: 360,
+      });
+
+      reveal.classList.add("show");
+
+      createHeartStorm();
+      showMemoryRain();
+    }
+  }, 100);
+}
+
+function stopUnlock() {
+  clearInterval(holdInterval);
+
+  progress = 0;
+
+  circle.style.strokeDashoffset = circumference;
+
+  text.innerHTML = "Hold Longer ❤️";
+}
+
+function createHeartStorm() {
+  const emojis = ["💖", "💕", "❤️", "🌸", "✨", "🎀"];
+
+  for (let i = 0; i < 200; i++) {
+    setTimeout(() => {
+      const e = document.createElement("div");
+
+      e.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+      e.className = "heart";
+
+      e.style.left = Math.random() * 100 + "vw";
+
+      e.style.fontSize = 20 + Math.random() * 40 + "px";
+
+      document.body.appendChild(e);
+
+      setTimeout(() => {
+        e.remove();
+      }, 8000);
+    }, i * 30);
+  }
+}
+
+function showLoveExplosion() {
+  confetti({
+    particleCount: 1200,
+    spread: 360,
+  });
+
+  createPopup("❤️ Infinite Happiness For Ananya ❤️");
+}
+
+function showMemoryRain() {
+  for (let i = 1; i <= 16; i++) {
+    setTimeout(() => {
+      const img = document.createElement("img");
+
+      img.src = `assets/images/photo${i}.jpeg`;
+
+      img.className = "memory-rain";
+
+      img.style.left = Math.random() * (window.innerWidth - 120) + "px";
+
+      document.body.appendChild(img);
+      setTimeout(() => {
+        img.remove();
+      }, 8000);
+    }, i * 300);
+  }
+}
+
+heart.addEventListener("mousedown", startUnlock);
+heart.addEventListener("mouseup", stopUnlock);
+
+heart.addEventListener("touchstart", startUnlock);
+heart.addEventListener("touchend", stopUnlock);
