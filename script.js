@@ -552,30 +552,13 @@ startBtn.addEventListener("click", () => {
     spread: 180,
   });
 
-  // Start auto journey after a short delay
-  setTimeout(startAutoJourney, 1000);
-});
+  setTimeout(() => {
+    document.querySelector(".memory-wall").scrollIntoView({
+      behavior: "smooth",
+    });
+  }, 1000);
 
-const timings = [8000, 5000, 6000, 5000, 7000, 8000];
-
-function startAutoJourney() {
-  const sections = [
-    ".memory-wall",
-    ".quiz",
-    ".letters",
-    ".dashboard",
-    ".future",
-    ".final",
-  ];
-
-  const timings = [8000, 5000, 6000, 5000, 7000, 8000];
-
-  let i = 0;
-
-  function move() {
-    if (i >= sections.length) {
-      // Final journey completed
-      setTimeout(() => {
+  setTimeout(() => {
         partyBtn.classList.add("show");
 
         confetti({
@@ -583,19 +566,4 @@ function startAutoJourney() {
           spread: 180,
         });
       }, 2000);
-
-      return;
-    }
-
-    document.querySelector(sections[i]).scrollIntoView({
-      behavior: "smooth",
-    });
-
-    const delay = timings[i];
-    i++;
-
-    setTimeout(move, delay);
-  }
-
-  move();
-}
+});
